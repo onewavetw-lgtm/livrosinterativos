@@ -797,6 +797,38 @@
                 grid-template-columns: repeat(auto-fill, minmax(130px, 1fr))
             }
         }
+
+        /* SLIDER STYLE */
+        .slider-container {
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            border: 2px solid rgba(255, 77, 139, .2);
+            position: relative;
+            background: var(--surface);
+            box-shadow: 0 0 30px rgba(255, 77, 139, .15);
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .slider-item {
+            min-width: 100%;
+            aspect-ratio: 9/16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     </style>
 </head>
 
@@ -844,66 +876,12 @@
     <!-- PDF PRINTS -->
     <section class="pdf-section" id="espiadinha">
         <div class="section-label">👀 Espiadinha — veja por dentro</div>
-        <div class="pdf-grid">
-            <div class="pdf-slot">
-                <div class="pdf-num">01</div>
-                <div class="pdf-slot-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg>
-                </div>
-                <div class="pdf-slot-label">Cole seu print aqui</div>
-            </div>
-            <div class="pdf-slot">
-                <div class="pdf-num">02</div>
-                <div class="pdf-slot-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg>
-                </div>
-                <div class="pdf-slot-label">Cole seu print aqui</div>
-            </div>
-            <div class="pdf-slot">
-                <div class="pdf-num">03</div>
-                <div class="pdf-slot-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg>
-                </div>
-                <div class="pdf-slot-label">Cole seu print aqui</div>
-            </div>
-            <div class="pdf-slot">
-                <div class="pdf-num">04</div>
-                <div class="pdf-slot-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg>
-                </div>
-                <div class="pdf-slot-label">Cole seu print aqui</div>
-            </div>
-            <div class="pdf-slot">
-                <div class="pdf-num">05</div>
-                <div class="pdf-slot-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg>
-                </div>
-                <div class="pdf-slot-label">Cole seu print aqui</div>
-            </div>
-            <div class="pdf-slot">
-                <div class="pdf-num">06</div>
-                <div class="pdf-slot-icon">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" />
-                        <path d="M3 9h18M9 21V9" />
-                    </svg>
-                </div>
-                <div class="pdf-slot-label">Cole seu print aqui</div>
+        <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+                <div class="slider-item"><img src="assets/print1.webp" alt="Print 1"></div>
+                <div class="slider-item"><img src="assets/print2.webp" alt="Print 2"></div>
+                <div class="slider-item"><img src="assets/print3.webp" alt="Print 3"></div>
+                <div class="slider-item"><img src="assets/print4.webp" alt="Print 4"></div>
             </div>
         </div>
     </section>
@@ -1120,6 +1098,17 @@
                 if (total > 0) { total--; setTimeout(tick, 1000) }
             }
             tick();
+        })();
+
+        (function () {
+            let currentSlide = 0;
+            const track = document.getElementById('sliderTrack');
+            const totalSlides = 4;
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+            setInterval(nextSlide, 3500);
         })();
     </script>
 </body>
