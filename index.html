@@ -798,57 +798,47 @@
             }
         }
 
-        /* MODERN MULTI IMAGE MARQUEE */
+        /* ELEGANT DISCRETE SLIDER */
         .esp-track-wrap {
             width: 100%;
             overflow: hidden;
             position: relative;
-            padding: 10px 0 30px;
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            padding: 20px 0 40px;
         }
 
         .esp-track {
             display: flex;
-            gap: 16px;
+            align-items: center;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
             width: max-content;
-            animation: scrollMarquee 15s linear infinite;
-        }
-
-        .esp-track:hover {
-            animation-play-state: paused;
         }
 
         .esp-item {
             width: 220px;
+            margin: 0 8px;
+            /* 16px total gap */
             flex-shrink: 0;
             border-radius: var(--radius-lg);
-            border: 2px solid rgba(255, 77, 139, .2);
+            border: 2px solid rgba(255, 77, 139, .15);
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(255, 77, 139, .15);
-            transition: transform 0.3s ease, border-color 0.3s;
-            cursor: pointer;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s, border-color 0.8s;
+            opacity: 0.4;
+            transform: scale(0.85);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .esp-item:hover {
-            transform: scale(1.02) translateY(-4px);
-            border-color: rgba(255, 77, 139, .8);
-            box-shadow: 0 15px 40px rgba(255, 77, 139, .3);
+        .esp-item.active {
+            opacity: 1;
+            transform: scale(1);
+            border-color: var(--pink);
+            box-shadow: 0 15px 40px rgba(255, 77, 139, .35);
+            z-index: 2;
+            position: relative;
         }
 
         .esp-item img {
             width: 100%;
             display: block;
-        }
-
-        @keyframes scrollMarquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(calc(-50% - 8px));
-            }
         }
     </style>
 </head>
@@ -902,12 +892,6 @@
         <div class="section-label">👀 Espiadinha — veja por dentro</div>
         <div class="esp-track-wrap">
             <div class="esp-track" id="espTrack">
-                <!-- Conjunto 1 -->
-                <div class="esp-item"><img src="assets/print1.webp" alt="Print 1"></div>
-                <div class="esp-item"><img src="assets/print2.webp" alt="Print 2"></div>
-                <div class="esp-item"><img src="assets/print3.webp" alt="Print 3"></div>
-                <div class="esp-item"><img src="assets/print4.webp" alt="Print 4"></div>
-                <!-- Conjunto 2 (Duplicado para o Looping Infinito Suave) -->
                 <div class="esp-item"><img src="assets/print1.webp" alt="Print 1"></div>
                 <div class="esp-item"><img src="assets/print2.webp" alt="Print 2"></div>
                 <div class="esp-item"><img src="assets/print3.webp" alt="Print 3"></div>
@@ -1130,6 +1114,37 @@
             tick();
         })();
 
+        (function () {
+            const track = document.getElementById('espTrack');
+            const items = track.querySelectorAll('.esp-item');
+            const wrap = document.querySelector('.esp-track-wrap');
+            let currentIndex = 0;
+
+            function goToSlide(index) {
+                items.forEach(el => el.classList.remove('active'));
+                items[index].classList.add('active');
+
+                const itemWidth = 220;
+                const margin = 16;
+                const totalItemWidth = itemWidth + margin;
+
+                const wrapCenter = wrap.offsetWidth / 2;
+                const itemOffset = (index * totalItemWidth) + (totalItemWidth / 2);
+
+                const shift = wrapCenter - itemOffset;
+
+                track.style.transform = `translateX(${shift}px)`;
+            }
+
+            goToSlide(0);
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % items.length;
+                goToSlide(currentIndex);
+            }, 3000);
+
+            window.addEventListener('resize', () => goToSlide(currentIndex));
+        })();
     </script>
 </body>
 
