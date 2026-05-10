@@ -798,36 +798,41 @@
             }
         }
 
-        /* SLIDER STYLE */
-        .slider-container {
+        /* MULTI IMAGE TRACK */
+        .esp-track-wrap {
             width: 100%;
-            max-width: 320px;
-            margin: 0 auto;
             overflow: hidden;
-            border-radius: var(--radius-lg);
-            border: 2px solid rgba(255, 77, 139, .2);
             position: relative;
-            background: var(--surface);
-            box-shadow: 0 0 30px rgba(255, 77, 139, .15);
         }
 
-        .slider-track {
+        .esp-track {
             display: flex;
-            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+            gap: 16px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 24px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .slider-item {
-            min-width: 100%;
-            aspect-ratio: 9/16;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .esp-track::-webkit-scrollbar {
+            display: none;
         }
 
-        .slider-item img {
+        .esp-item {
+            flex: 0 0 60%;
+            /* Shows the next image peaking */
+            max-width: 260px;
+            scroll-snap-align: center;
+            border-radius: var(--radius-lg);
+            border: 2px solid rgba(255, 77, 139, .3);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(255, 77, 139, .15);
+        }
+
+        .esp-item img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            display: block;
         }
     </style>
 </head>
@@ -879,12 +884,12 @@
     <!-- PDF PRINTS -->
     <section class="pdf-section" id="espiadinha">
         <div class="section-label">👀 Espiadinha — veja por dentro</div>
-        <div class="slider-container">
-            <div class="slider-track" id="sliderTrack">
-                <div class="slider-item"><img src="assets/print1.webp" alt="Print 1"></div>
-                <div class="slider-item"><img src="assets/print2.webp" alt="Print 2"></div>
-                <div class="slider-item"><img src="assets/print3.webp" alt="Print 3"></div>
-                <div class="slider-item"><img src="assets/print4.webp" alt="Print 4"></div>
+        <div class="esp-track-wrap">
+            <div class="esp-track" id="espTrack">
+                <div class="esp-item"><img src="assets/print1.webp" alt="Print 1"></div>
+                <div class="esp-item"><img src="assets/print2.webp" alt="Print 2"></div>
+                <div class="esp-item"><img src="assets/print3.webp" alt="Print 3"></div>
+                <div class="esp-item"><img src="assets/print4.webp" alt="Print 4"></div>
             </div>
         </div>
     </section>
@@ -1104,14 +1109,17 @@
         })();
 
         (function () {
-            let currentSlide = 0;
-            const track = document.getElementById('sliderTrack');
-            const totalSlides = 4;
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            }
-            setInterval(nextSlide, 3500);
+            // Auto scroll para mostrar várias imagens suavemente
+            const track = document.getElementById('espTrack');
+            let scrollAmount = 0;
+            setInterval(() => {
+                if (track.scrollWidth - track.scrollLeft <= track.clientWidth + 10) {
+                    track.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    const itemWidth = track.querySelector('.esp-item').offsetWidth + 16;
+                    track.scrollBy({ left: itemWidth, behavior: 'smooth' });
+                }
+            }, 3000);
         })();
     </script>
 </body>
