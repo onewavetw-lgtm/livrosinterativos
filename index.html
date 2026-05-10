@@ -920,39 +920,64 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="testimonials-section" id="depoimentos"
-        style="padding: 20px 20px 40px; max-width: 600px; margin: 0 auto;">
+    <!-- TESTIMONIALS SLIDER -->
+    <section class="testimonials-section" id="depoimentos" style="padding: 20px 0 40px; overflow: hidden;">
         <div class="section-label">💬 O que as clientes estão dizendo</div>
         <p style="text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 24px;">Resultados reais de
-            quem já está faturando com os nossos kits interactivos!</p>
+            quem já fatura alto!</p>
 
-        <div class="reviews-grid"
-            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px;">
-            <div class="review-card"
-                style="border-radius: var(--radius-lg); overflow: hidden; border: 2px solid rgba(255, 77, 139, .15); box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; background: #2a0b1d;">
-                <img src="assets/depoimento1.png" style="width: 100%; display: block; object-fit: cover;"
-                    alt="Depoimento de Cliente">
-            </div>
-            <div class="review-card"
-                style="border-radius: var(--radius-lg); overflow: hidden; border: 2px solid rgba(255, 77, 139, .15); box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; background: #2a0b1d;">
-                <img src="assets/depoimento2.png" style="width: 100%; display: block; object-fit: cover;"
-                    alt="Depoimento de Cliente">
-            </div>
-            <div class="review-card"
-                style="border-radius: var(--radius-lg); overflow: hidden; border: 2px solid rgba(255, 77, 139, .15); box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; background: #2a0b1d;">
-                <img src="assets/depoimento3.png" style="width: 100%; display: block; object-fit: cover;"
-                    alt="Depoimento de Cliente">
-            </div>
-            <div class="review-card"
-                style="border-radius: var(--radius-lg); overflow: hidden; border: 2px solid rgba(255, 77, 139, .15); box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; background: #2a0b1d;">
-                <img src="assets/depoimento4.png" style="width: 100%; display: block; object-fit: cover;"
-                    alt="Depoimento de Cliente">
-            </div>
-            <div class="review-card"
-                style="border-radius: var(--radius-lg); overflow: hidden; border: 2px solid rgba(255, 77, 139, .15); box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; background: #2a0b1d;">
-                <img src="assets/depoimento5.png" style="width: 100%; display: block; object-fit: cover;"
-                    alt="Depoimento de Cliente">
+        <style>
+            .reviews-wrap {
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                padding-bottom: 20px;
+            }
+
+            .reviews-track {
+                display: flex;
+                align-items: center;
+                transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+                width: max-content;
+            }
+
+            .rev-item {
+                width: 280px;
+                /* MAIORES (Grandes no celular) */
+                margin: 0 10px;
+                flex-shrink: 0;
+                border-radius: var(--radius-lg);
+                border: 2px solid rgba(255, 77, 139, .15);
+                overflow: hidden;
+                transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s;
+                opacity: 0.4;
+                transform: scale(0.85);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            .rev-item.active {
+                opacity: 1;
+                transform: scale(1);
+                border-color: var(--pink);
+                box-shadow: 0 15px 40px rgba(255, 77, 139, .35);
+                z-index: 2;
+                position: relative;
+            }
+
+            .rev-item img {
+                width: 100%;
+                display: block;
+                object-fit: contain;
+            }
+        </style>
+
+        <div class="reviews-wrap">
+            <div class="reviews-track" id="reviewsTrack">
+                <div class="rev-item"><img src="assets/depoimento1.png" alt="Depoimento 1"></div>
+                <div class="rev-item"><img src="assets/depoimento2.png" alt="Depoimento 2"></div>
+                <div class="rev-item"><img src="assets/depoimento3.png" alt="Depoimento 3"></div>
+                <div class="rev-item"><img src="assets/depoimento4.png" alt="Depoimento 4"></div>
+                <div class="rev-item"><img src="assets/depoimento5.png" alt="Depoimento 5"></div>
             </div>
         </div>
     </section>
@@ -1131,6 +1156,37 @@
                 currentIndex = (currentIndex + 1) % items.length;
                 goToSlide(currentIndex);
             }, 3000);
+
+            window.addEventListener('resize', () => goToSlide(currentIndex));
+        })();
+
+        // REVIEWS SLIDER LOGIC
+        (function () {
+            const track = document.getElementById('reviewsTrack');
+            const items = track.querySelectorAll('.rev-item');
+            const wrap = document.querySelector('.reviews-wrap');
+            let currentIndex = 0;
+
+            function goToSlide(index) {
+                items.forEach(el => el.classList.remove('active'));
+                items[index].classList.add('active');
+
+                const itemWidth = 280;
+                const margin = 20; // 10px each side
+                const totalWidth = itemWidth + margin;
+                const wrapCenter = wrap.offsetWidth / 2;
+                const itemOffset = (index * totalWidth) + (totalWidth / 2);
+                const shift = wrapCenter - itemOffset;
+
+                track.style.transform = `translateX(${shift}px)`;
+            }
+
+            goToSlide(0);
+
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % items.length;
+                goToSlide(currentIndex);
+            }, 3500); // 3.5s pra dar tempo de ler os depoimentos
 
             window.addEventListener('resize', () => goToSlide(currentIndex));
         })();
