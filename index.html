@@ -471,6 +471,64 @@
         .mt-40 {
             margin-top: 40px;
         }
+
+        /* Carousel */
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-track img {
+            min-width: 100%;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .carousel-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .carousel-dot.active {
+            background: var(--pink-main);
+        }
+
+        /* Testimonials Grid */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid img {
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            display: block;
+        }
     </style>
 </head>
 
@@ -515,9 +573,18 @@
                 <h2>Veja os produtos que você pode personalizar e vender</h2>
             </div>
 
-            <!-- Imagens do produto -->
-            <div class="image-placeholder">
-                (⬇️ Imagens dos produtos infantis aqui)
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="produtos-track">
+                    <img src="assets/print1.webp" alt="Produto 1">
+                    <img src="assets/print2.webp" alt="Produto 2">
+                    <img src="assets/print3.webp" alt="Produto 3">
+                    <img src="assets/print4.webp" alt="Produto 4">
+                    <img src="assets/novo_print1.jpeg" alt="Produto 5">
+                    <img src="assets/novo_print2.jpeg" alt="Produto 6">
+                    <img src="assets/novo_print3.jpeg" alt="Produto 7">
+                    <img src="assets/novo_print4.jpeg" alt="Produto 8">
+                </div>
+                <div class="carousel-dots" id="produtos-dots"></div>
             </div>
 
             <div class="section-header mt-40">
@@ -769,8 +836,12 @@
                 <h2>Veja o que algumas pessoas estão dizendo</h2>
             </div>
 
-            <div class="image-placeholder">
-                (⬇️ Inserir Prints / Depoimentos Aqui)
+            <div class="testimonials-grid">
+                <img src="assets/depoimento1.png" alt="Depoimento 1">
+                <img src="assets/depoimento2.png" alt="Depoimento 2">
+                <img src="assets/depoimento3.png" alt="Depoimento 3">
+                <img src="assets/depoimento4.png" alt="Depoimento 4">
+                <img src="assets/depoimento5.png" alt="Depoimento 5">
             </div>
         </div>
     </section>
@@ -871,6 +942,30 @@
         </div>
     </footer>
 
+    <script>
+        (function () {
+            var track = document.getElementById('produtos-track');
+            var dotsEl = document.getElementById('produtos-dots');
+            if (!track || !dotsEl) return;
+            var total = track.children.length;
+            var current = 0;
+            for (var i = 0; i < total; i++) {
+                var d = document.createElement('span');
+                d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                d.setAttribute('data-i', i);
+                d.onclick = function () { go(+this.getAttribute('data-i')); };
+                dotsEl.appendChild(d);
+            }
+            function go(n) {
+                current = n;
+                track.style.transform = 'translateX(-' + (100 * n) + '%)';
+                [].forEach.call(dotsEl.children, function (d, i) {
+                    d.classList.toggle('active', i === n);
+                });
+            }
+            setInterval(function () { go((current + 1) % total); }, 2800);
+        })();
+    </script>
 </body>
 
 </html>
