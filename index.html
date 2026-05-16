@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Método Encaderna & Lucra™</title>
 
     <!-- UTMify Pixel -->
     <script>
@@ -17,1195 +18,870 @@
     <!-- UTMify Tracker -->
     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck
         data-utmify-prevent-subids async defer></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap"
         rel="stylesheet">
+
     <style>
+        :root {
+            /* Colors from guidelines */
+            --pink-main: #FF6FAE;
+            --pink-cta: #FF4D8D;
+            --lilac: #B892FF;
+            --yellow-light: #FFD86B;
+            --white: #FFFFFF;
+            --black-soft: #2B2B2B;
+            --gray-light: #F5F5F5;
+
+            --max-w: 960px;
+        }
+
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box
-        }
-
-        :root {
-            --pink: #FF4D8B;
-            --pink-dark: #D4366D;
-            --pink-light: #FFF0F6;
-            --yellow: #FFD700;
-            --yellow-dark: #E6B800;
-            --dark: #12040D;
-            --surface: #1C0916;
-            --muted: #8B5E79;
-            --text: #FFFFFF;
-            /* Mudado para branco puro para máxima leitura */
-            --text-dim: #FFFFFF;
-            /* Mudado para branco para facilitar a leitura das mães */
-            --radius: 14px;
-            --radius-lg: 22px;
+            box-sizing: border-box;
         }
 
         body {
-            background: var(--dark);
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--black-soft);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.2;
+            color: var(--black-soft);
         }
 
         img {
             max-width: 100%;
             height: auto;
             display: block;
+            border-radius: 12px;
         }
 
-        /* RESPONSIVE DESKTOP CENTERING */
-        nav,
-        .hero,
-        .preview-bar,
-        .pdf-section,
-        .books-section,
-        .features,
-        .bonuses,
-        .price-section,
-        .timer-section,
-        .faq {
-            padding-left: max(5%, calc((100vw - 800px) / 2)) !important;
-            padding-right: max(5%, calc((100vw - 800px) / 2)) !important;
+        .container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 18px;
-            padding-bottom: 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, .06);
-            position: sticky;
-            top: 0;
-            background: rgba(18, 4, 13, .92);
-            backdrop-filter: blur(12px);
-            z-index: 100
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 22px;
-            /* Aumentado de 18px */
-            color: var(--pink);
-            letter-spacing: -.3px
-        }
-
-        .nav-badge {
-            background: var(--pink);
-            color: #fff;
-            font-size: 14px;
-            /* Aumentado de 11px */
-            font-weight: 600;
-            padding: 6px 16px;
-            border-radius: 100px
-        }
-
-        .hero {
-            padding-top: 70px;
-            padding-bottom: 50px;
+        /* Top Bar */
+        .top-bar {
+            background: var(--yellow-light);
             text-align: center;
-            position: relative;
-            overflow: hidden
+            padding: 12px 20px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--black-soft);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 77, 139, .15) 0%, transparent 70%);
-            pointer-events: none
-        }
-
-        .hero-tag {
-            display: inline-block;
-            background: rgba(255, 215, 0, .12);
-            border: 1px solid rgba(255, 215, 0, .3);
-            color: var(--yellow);
-            font-size: 16px;
-            /* Aumentado de 12px */
-            font-weight: 600;
-            padding: 8px 20px;
-            border-radius: 100px;
-            margin-bottom: 22px
+        /* Hero */
+        .hero {
+            padding: 60px 0;
+            text-align: center;
+            background: linear-gradient(180deg, var(--gray-light) 0%, var(--white) 100%);
         }
 
         .hero h1 {
-            font-size: clamp(32px, 5vw, 50px);
+            font-size: clamp(32px, 5vw, 48px);
             font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px
+            margin-bottom: 20px;
+            color: var(--black-soft);
         }
 
-        .hero h1 span {
-            color: var(--pink)
+        .hero h1 span.highlight {
+            color: var(--pink-main);
         }
 
-        .hero p {
-            font-size: 20px;
-            /* Aumentado de 17px */
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 38px;
-            font-weight: 500
-                /* Ficou um pouco mais grosso para ler melhor */
-        }
-
-        /* VSL */
-        .vsl-wrap {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 32px;
-        }
-
-        .vsl-container {
-            position: relative;
-            width: 100%;
-            max-width: 320px;
-            aspect-ratio: 9/16;
-            background: var(--surface);
-            border: 2px dashed rgba(255, 77, 139, .35);
-            border-radius: var(--radius-lg);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: border-color .2s, background .2s;
-            overflow: hidden
-        }
-
-        .vsl-container:hover {
-            border-color: rgba(255, 77, 139, .7);
-            background: rgba(255, 77, 139, .05)
-        }
-
-        .vsl-play {
-            width: 56px;
-            height: 56px;
-            background: rgba(255, 77, 139, .15);
-            border: 2px solid rgba(255, 77, 139, .4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .vsl-play svg {
-            width: 22px;
-            height: 22px;
-            fill: var(--pink);
-            margin-left: 3px
-        }
-
-        .vsl-label {
-            font-size: 13px;
-            color: var(--text-dim);
-            text-align: center;
-            padding: 0 20px;
-            line-height: 1.4
-        }
-
-        .vsl-badge {
-            font-size: 11px;
-            background: rgba(255, 77, 139, .12);
-            color: var(--pink);
-            padding: 4px 12px;
-            border-radius: 100px;
-            border: 1px solid rgba(255, 77, 139, .25);
+        .hero p.subtitle {
+            font-size: 18px;
+            color: #4B4B4B;
+            max-width: 700px;
+            margin: 0 auto 32px;
             font-weight: 500;
         }
 
-        .hero-cta {
+        /* Buttons */
+        .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            background: var(--pink);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 17px 36px;
-            border-radius: 100px;
+            background: #39B574;
+            color: var(--white);
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            padding: 20px 40px;
+            border-radius: 999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(57, 181, 116, 0.3);
             border: none;
             cursor: pointer;
-            transition: transform .2s, box-shadow .2s;
-            box-shadow: 0 0 40px rgba(255, 77, 139, .35);
             width: 100%;
-            max-width: 320px;
+            max-width: 420px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(57, 181, 116, 0.4);
+            background: #2D935E;
+            /* slightly darker green */
+        }
+
+        .btn.outline {
+            background: transparent;
+            color: #39B574;
+            border: 2px solid #39B574;
+            box-shadow: none;
+        }
+
+        .btn.outline:hover {
+            background: rgba(57, 181, 116, 0.05);
+        }
+
+        /* Checkmarks List */
+        .check-list-hero {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 500px;
+            margin: 0 auto 32px;
+            text-align: left;
+        }
+
+        .check-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--black-soft);
+        }
+
+        .check-icon {
+            color: var(--pink-main);
+            font-size: 20px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .trust-badge {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-alt {
+            background-color: var(--gray-light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(28px, 4vw, 36px);
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        /* Grid Cards */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 16px;
+            background: rgba(184, 146, 255, 0.15);
+            display: inline-flex;
+            width: 64px;
+            height: 64px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            color: var(--lilac);
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 15px;
+        }
+
+        /* Problem Section */
+        .problem-text {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--pink-cta);
+            max-width: 600px;
+            margin: 0 auto 32px;
             font-family: 'Poppins', sans-serif;
         }
 
-        .hero-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(255, 77, 139, .5)
+        /* Bonus Cards */
+        .bonus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
-        .hero-cta svg {
-            width: 18px;
-            height: 18px
+        .bonus-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--yellow-light);
+            text-align: left;
         }
 
-        .hero-sub {
-            display: block;
-            margin-top: 14px;
-            font-size: 13px;
-            color: var(--muted)
-        }
-
-        .preview-bar {
-            background: var(--surface);
-            border-top: 1px solid rgba(255, 255, 255, .06);
-            border-bottom: 1px solid rgba(255, 255, 255, .06);
-            padding-top: 14px;
-            padding-bottom: 14px;
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-dim);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .preview-link {
-            color: var(--pink-light);
-            font-weight: 600
-        }
-
-        .preview-bar:hover .preview-link {
-            color: var(--pink);
-            text-decoration: underline
-        }
-
-        /* PDF PREVIEWS */
-        .pdf-section {
-            padding-top: 50px;
-            padding-bottom: 40px
-        }
-
-        .section-label {
-            font-size: 12px;
-            letter-spacing: 1px;
-            color: var(--muted);
+        .bonus-card h4 {
+            font-size: 16px;
+            color: var(--pink-main);
             text-transform: uppercase;
-            margin-bottom: 20px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .pdf-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
-            gap: 14px
-        }
-
-        .pdf-slot {
-            aspect-ratio: 3/4;
-            background: var(--surface);
-            border: 2px dashed rgba(255, 77, 139, .25);
-            border-radius: var(--radius);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: border-color .2s, background .2s;
-            position: relative;
-            overflow: hidden
-        }
-
-        .pdf-slot:hover {
-            border-color: rgba(255, 77, 139, .5);
-            background: rgba(255, 77, 139, .04)
-        }
-
-        .pdf-slot-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 77, 139, .1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center
-        }
-
-        .pdf-slot-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--pink);
-            fill: none;
-            stroke-width: 1.5
-        }
-
-        .pdf-slot-label {
-            font-size: 14px;
-            /* Aumentado de 11px */
-            color: #FFFFFF;
-            text-align: center;
-            padding: 0 10px;
-            line-height: 1.4
-        }
-
-        .pdf-num {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(255, 77, 139, .15);
-            border: 1px solid rgba(255, 77, 139, .3);
-            color: var(--pink);
-            font-size: 10px;
-            font-weight: 600;
-            padding: 3px 9px;
-            border-radius: 100px
-        }
-
-        /* BOOKS SCROLL */
-        .books-section {
-            padding-top: 30px;
-            padding-bottom: 40px
-        }
-
-        .books-track {
-            display: flex;
-            gap: 14px;
-            overflow-x: auto;
-            padding: 10px 0 16px;
-            scrollbar-width: none;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .books-track::-webkit-scrollbar {
-            display: none
-        }
-
-        .book-card {
-            flex: 0 0 130px;
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: var(--radius);
-            padding: 20px 14px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            transition: border-color .2s, transform .2s;
-            scroll-snap-align: start;
-        }
-
-        .book-card:hover {
-            border-color: rgba(255, 77, 139, .4);
-            transform: translateY(-3px)
-        }
-
-        .book-emoji {
-            font-size: 32px;
-            line-height: 1
-        }
-
-        .book-name {
-            font-size: 16px;
-            /* Aumentado de 12px */
-            color: #FFFFFF;
-            font-weight: 500;
-            line-height: 1.3
-        }
-
-        .book-hot {
-            font-size: 10px;
-            background: rgba(255, 77, 139, .15);
-            color: var(--pink);
-            padding: 3px 10px;
-            border-radius: 100px;
-            font-weight: 600
-        }
-
-        .features {
-            padding-top: 50px;
-            padding-bottom: 40px
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-            gap: 16px
-        }
-
-        .feat {
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: var(--radius-lg);
-            padding: 26px 22px;
-            position: relative;
-            overflow: hidden
-        }
-
-        .feat::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--pink), var(--yellow))
-        }
-
-        .feat-icon {
-            font-size: 26px;
-            margin-bottom: 12px;
-            display: block
-        }
-
-        .feat-title {
-            font-size: 20px;
-            /* Aumentado de 16px */
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 8px
-        }
-
-        .feat-desc {
-            font-size: 16px;
-            /* Aumentado de 13px */
-            color: #FFFFFF;
-            line-height: 1.55
-        }
-
-        .bonuses {
-            padding-top: 40px;
-            padding-bottom: 10px;
-        }
-
-        .section-title {
-            font-size: clamp(22px, 3vw, 30px);
-            font-weight: 800;
-            text-align: center;
             margin-bottom: 8px;
-            line-height: 1.2
         }
 
-        .section-title span {
-            color: var(--pink)
-        }
-
-        .section-sub {
-            text-align: center;
-            color: #FFFFFF;
+        .bonus-card h3 {
             font-size: 18px;
-            /* Aumentado de 15px */
-            margin-bottom: 30px
+            margin-bottom: 12px;
         }
 
-        .bonuses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
-            gap: 16px
-        }
-
-        .bonus {
-            display: flex;
-            gap: 16px;
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: var(--radius-lg);
-            padding: 24px 20px;
-            align-items: flex-start
-        }
-
-        .bonus-num {
-            flex: 0 0 44px;
-            height: 44px;
-            background: rgba(255, 77, 139, .12);
-            border: 1px solid rgba(255, 77, 139, .25);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--pink)
-        }
-
-        .bonus-title {
-            font-weight: 600;
+        .bonus-card p {
+            color: #555;
             font-size: 15px;
-            margin-bottom: 6px;
-            color: var(--text)
         }
 
-        .bonus-desc {
-            font-size: 16px;
-            /* Aumentado de 13px */
-            color: #FFFFFF;
-            line-height: 1.5
+        /* Pricing Area */
+        .pricing-section {
+            background: var(--gray-light);
+            color: var(--black-soft);
+            padding: 80px 0;
+            text-align: center;
         }
 
-        .price-section {
-            padding-top: 40px;
-            padding-bottom: 50px;
-            text-align: center
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 800px;
+            margin: 48px auto 0;
+            align-items: stretch;
         }
 
-        .price-box {
-            background: var(--surface);
-            border: 1px solid rgba(255, 77, 139, .2);
-            border-radius: var(--radius-lg);
-            max-width: 520px;
-            margin: 0 auto;
+        .price-card {
+            background: var(--white);
+            color: var(--black-soft);
+            border-radius: 20px;
             padding: 40px 32px;
             position: relative;
-            overflow: hidden
-        }
-
-        .price-box::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at top, rgba(255, 77, 139, .08), transparent 60%);
-            pointer-events: none
-        }
-
-        .price-tag {
-            display: inline-block;
-            background: rgba(255, 215, 0, .1);
-            border: 1px solid rgba(255, 215, 0, .25);
-            color: var(--yellow);
-            font-size: 12px;
-            padding: 5px 14px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-            letter-spacing: .5px;
-            font-weight: 600
-        }
-
-        .price-name {
-            font-size: 22px;
-            font-weight: 800;
-            margin-bottom: 4px
-        }
-
-        .price-included {
-            color: #FFFFFF;
-            font-size: 16px;
-            /* Aumentado de 13px */
-            margin-bottom: 28px
-        }
-
-        .price-was {
-            font-size: 14px;
-            color: var(--muted);
-            text-decoration: line-through;
-            margin-bottom: 4px
-        }
-
-        .price-now {
-            font-size: 52px;
-            font-weight: 800;
-            color: var(--pink);
-            line-height: 1;
-            margin-bottom: 6px
-        }
-
-        .price-note {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 30px
-        }
-
-        .price-cta {
-            display: block;
-            width: 100%;
-            background: var(--pink);
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            padding: 18px;
-            border-radius: 100px;
-            border: none;
-            cursor: pointer;
-            transition: transform .2s, box-shadow .2s;
-            box-shadow: 0 0 40px rgba(255, 77, 139, .3);
-            font-family: 'Poppins', sans-serif
-        }
-
-        .price-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 60px rgba(255, 77, 139, .45)
-        }
-
-        .price-guarantee {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 20px;
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        .timer-section {
-            background: rgba(255, 77, 139, .06);
-            border-top: 1px solid rgba(255, 77, 139, .12);
-            border-bottom: 1px solid rgba(255, 77, 139, .12);
-            padding-top: 22px;
-            padding-bottom: 22px;
-            text-align: center
-        }
-
-        .timer-label {
-            font-size: 13px;
-            color: var(--text-dim);
-            margin-bottom: 12px
-        }
-
-        .timer-label span {
-            color: var(--pink);
-            font-weight: 600
-        }
-
-        .timer-digits {
-            display: flex;
-            justify-content: center;
-            gap: 10px
-        }
-
-        .timer-block {
-            background: var(--dark);
-            border: 1px solid rgba(255, 77, 139, .2);
-            border-radius: 10px;
-            padding: 12px 16px;
-            min-width: 70px
-        }
-
-        .timer-num {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--text);
-            line-height: 1
-        }
-
-        .timer-unit {
-            font-size: 10px;
-            color: var(--muted);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        .timer-sep {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--pink);
-            align-self: center;
-            margin-bottom: 10px
-        }
-
-        .faq {
-            padding-top: 50px;
-            padding-bottom: 60px
-        }
-
-        .faq-list {
-            max-width: 620px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 10px
-        }
-
-        .faq-item {
-            background: var(--surface);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: border-color .3s;
-        }
-
-        .faq-q {
-            width: 100%;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            padding: 18px 20px;
             text-align: left;
-            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .price-card h3 {
+            font-size: 22px;
+            margin-bottom: 24px;
+            color: var(--black-soft);
+            text-align: center;
+        }
+
+        .price-list {
+            list-style: none;
+            margin-bottom: 32px;
+        }
+
+        .price-list li {
+            margin-bottom: 12px;
+            font-size: 15px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            transition: background .3s;
+            align-items: flex-start;
+            gap: 8px;
         }
 
-        .faq-q:hover {
-            background: rgba(255, 255, 255, .03);
-            color: var(--pink-light);
+        .price-list li::before {
+            content: '✔';
+            color: var(--pink-main);
+            font-weight: bold;
         }
 
-        .faq-arrow {
-            flex: 0 0 auto;
-            transition: transform .25s;
-            color: var(--muted);
-            font-size: 18px;
-            line-height: 1;
-            margin-top: -4px;
-        }
-
-        .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .3s ease, padding .3s ease;
+        .price-old {
+            color: #888;
             font-size: 16px;
-            /* Aumentado de 13px */
-            color: #FFFFFF;
-            line-height: 1.6;
-            padding: 0 20px
+            text-decoration: line-through;
+            text-align: center;
         }
 
-        .faq-item.open {
-            border-color: rgba(255, 77, 139, .3);
+        .price-new {
+            font-size: 48px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--pink-cta);
+            line-height: 1;
+            margin: 8px 0 24px;
+            text-align: center;
         }
 
-        .faq-item.open .faq-a {
-            max-height: 200px;
-            padding: 0 20px 18px
-        }
-
-        .faq-item.open .faq-arrow {
-            transform: rotate(180deg);
-            color: var(--pink);
-        }
-
-        @media(max-width:500px) {
-            .hero {
-                padding-top: 50px;
-                padding-bottom: 40px
-            }
-
-            .hero-cta {
-                font-size: 15px;
-                padding: 15px 20px
-            }
-
-            .price-now {
-                font-size: 42px
-            }
-
-            .price-box {
-                padding: 30px 20px
-            }
-
-            .timer-block {
-                min-width: 58px;
-                padding: 10px 12px
-            }
-
-            .timer-num {
-                font-size: 26px
-            }
-
-            .pdf-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr))
-            }
-        }
-
-        /* ELEGANT DISCRETE SLIDER */
-        .esp-track-wrap {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            padding: 20px 0 40px;
-        }
-
-        .esp-track {
-            display: flex;
-            align-items: center;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        .popular-badge {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--yellow-light);
+            color: var(--black-soft);
+            font-size: 14px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            padding: 8px 24px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             width: max-content;
         }
 
-        .esp-item {
-            width: 220px;
-            margin: 0 8px;
-            /* 16px total gap */
-            flex-shrink: 0;
-            border-radius: var(--radius-lg);
-            border: 2px solid rgba(255, 77, 139, .15);
-            overflow: hidden;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s, border-color 0.8s;
-            opacity: 0.4;
-            transform: scale(0.85);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        /* Testimonials Placeholder */
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: rgba(184, 146, 255, 0.1);
+            border: 2px dashed rgba(184, 146, 255, 0.4);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--lilac);
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 24px;
         }
 
-        .esp-item.active {
-            opacity: 1;
-            transform: scale(1);
-            border-color: var(--pink);
-            box-shadow: 0 15px 40px rgba(255, 77, 139, .35);
-            z-index: 2;
+        /* Guarantee */
+        .guarantee {
+            background: var(--white);
+            border: 2px solid var(--pink-main);
+            border-radius: 20px;
+            padding: 48px 32px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
             position: relative;
         }
 
-        .esp-item img {
-            width: 100%;
-            display: block;
+        .guarantee-icon {
+            font-size: 48px;
+            position: absolute;
+            top: -32px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            text-align: left;
+        }
+
+        .faq-item h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--pink-cta);
+        }
+
+        .faq-item p {
+            color: #555;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--white);
+            padding: 40px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .footer p {
+            margin-bottom: 12px;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .mt-40 {
+            margin-top: 40px;
         }
     </style>
 </head>
 
 <body>
 
-    <nav>
-        <div class="logo">Boutique Kids</div>
-        <div class="nav-badge">Oferta Especial</div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-tag">🔥 Temas Virais de 2026</div>
-        <h1>Os Livros que as<br><span>Mães não Largam</span></h1>
-        <p>30 livros interativos prontos para imprimir e faturar de R$ 30 a R$ 70 por unidade — sem saber design.</p>
-
-        <!-- VSL 9:16 -->
-        <div class="vsl-wrap">
-            <div class="vsl-container" style="border:none; background:transparent;">
-                <script src="https://fast.wistia.com/player.js" async></script>
-                <script src="https://fast.wistia.com/embed/b4tij8ffir.js" async type="module"></script>
-                <style>
-                    wistia-player[media-id='b4tij8ffir']:not(:defined) {
-                        background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/b4tij8ffir/swatch');
-                        display: block;
-                        filter: blur(5px);
-                    }
-                </style>
-                <wistia-player media-id="b4tij8ffir" aspect="0.5625"
-                    style="width: 100%; height: 100%; border-radius: var(--radius-lg); overflow: hidden;"></wistia-player>
-            </div>
-        </div>
-
-        <button class="hero-cta" onclick="document.getElementById('preco').scrollIntoView({behavior:'smooth'})">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            Quero Meu Acervo Agora
-        </button>
-        <span class="hero-sub">✓ Acesso imediato · ✓ Licença comercial inclusa</span>
-    </section>
-
-    <!-- PREVIEW BAR -->
-    <div class="preview-bar" onclick="document.getElementById('espiadinha').scrollIntoView({behavior:'smooth'})">
-        👀 <span class="preview-link">Dê uma espiadinha por dentro da coleção</span> — veja os temas que as crianças não
-        soltam
+    <div class="top-bar">
+        ⚡ OFERTA ESPECIAL DISPONÍVEL APENAS HOJE
     </div>
 
-    <!-- PDF PRINTS -->
-    <section class="pdf-section" id="espiadinha">
-        <div class="section-label">👀 Espiadinha — veja por dentro</div>
-        <div class="esp-track-wrap">
-            <div class="esp-track" id="espTrack">
-                <!-- Fotos Antigas -->
-                <div class="esp-item"><img src="assets/print1.webp" alt="Print 1"></div>
-                <div class="esp-item"><img src="assets/print2.webp" alt="Print 2"></div>
-                <div class="esp-item"><img src="assets/print3.webp" alt="Print 3"></div>
-                <div class="esp-item"><img src="assets/print4.webp" alt="Print 4"></div>
-                <!-- Novas Fotos -->
-                <div class="esp-item"><img src="assets/novo_print1.jpeg" alt="Review 1"></div>
-                <div class="esp-item"><img src="assets/novo_print1a.jpg" alt="Review 2"></div>
-                <div class="esp-item"><img src="assets/novo_print2.jpeg" alt="Review 3"></div>
-                <div class="esp-item"><img src="assets/novo_print3.jpeg" alt="Review 4"></div>
-                <div class="esp-item"><img src="assets/novo_print4.jpeg" alt="Review 5"></div>
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="container">
+            <h1>Comece Sua Papelaria Infantil em Casa <span class="highlight">em Até 24h</span></h1>
+            <p class="subtitle">Mesmo sem saber design ou criar artes do zero. Use produtos infantis prontos para
+                imprimir, personalizar e vender de forma simples e rápida.</p>
+
+            <div class="check-list-hero">
+                <div class="check-item"><span class="check-icon">✔</span> Produtos prontos para imprimir</div>
+                <div class="check-item"><span class="check-icon">✔</span> Personalização simples</div>
+                <div class="check-item"><span class="check-icon">✔</span> Arquivos organizados</div>
+                <div class="check-item"><span class="check-icon">✔</span> Impressão prática em casa</div>
+                <div class="check-item"><span class="check-icon">✔</span> Licença para venda física</div>
+                <div class="check-item"><span class="check-icon">✔</span> Zero tempo criando artes do zero</div>
+            </div>
+
+            <a href="#planos" class="btn">COMEÇAR MINHA PAPELARIA HOJE</a>
+
+            <div class="trust-badge">
+                Você recebe tudo na hora, direto no seu WhatsApp e no seu e-mail.
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOWCASE -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Veja os produtos que você pode personalizar e vender</h2>
+            </div>
+
+            <!-- Imagens do produto -->
+            <div class="image-placeholder">
+                (⬇️ Imagens dos produtos infantis aqui)
+            </div>
+
+            <div class="section-header mt-40">
+                <h2>Os produtos do Método Encaderna & Lucra™ possuem:</h2>
+            </div>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <div class="card-icon">🖨️</div>
+                    <h3>Produtos prontos</h3>
+                    <p>Arquivos preparados para imprimir, personalizar e vender sem criar artes do zero.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🎨</div>
+                    <h3>Personalização simples</h3>
+                    <p>Modelos fáceis de editar mesmo sem experiência com design.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📁</div>
+                    <h3>Arquivos organizados</h3>
+                    <p>Escolha o produto e comece sem complicação.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏠</div>
+                    <h3>Impressão prática</h3>
+                    <p>Use uma impressora comum para começar em casa.</p>
+                </div>
+            </div>
+
+            <div class="align-center mt-40">
+                <p style="font-size: 18px; font-weight: 600; margin-bottom: 24px;">Produtos prontos para vender</p>
+                <a href="#planos" class="btn">Quero começar minha papelaria</a>
             </div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS SLIDER -->
-    <section class="testimonials-section" id="depoimentos" style="padding: 20px 0 40px; overflow: hidden;">
-        <div class="section-label">💬 O que as clientes estão dizendo</div>
-        <p style="text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 24px;">Resultados reais de
-            quem já fatura alto!</p>
+    <!-- BENEFITS / ADVANTAGES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Com o Método Encaderna & Lucra™ você <span style="color: var(--pink-main);">começa mais
+                        rápido</span> e perde menos tempo</h2>
+            </div>
 
-        <style>
-            .reviews-wrap {
-                width: 100%;
-                overflow: hidden;
-                position: relative;
-                padding-bottom: 20px;
-            }
+            <div
+                style="max-width: 600px; margin: 0 auto; background: var(--gray-light); padding: 40px; border-radius: 24px;">
+                <div class="check-list-hero" style="margin-bottom: 0;">
+                    <div class="check-item"><span class="check-icon">✔</span> Para de perder tempo tentando aprender
+                        design</div>
+                    <div class="check-item"><span class="check-icon">✔</span> Produtos infantis prontos para vender
+                    </div>
+                    <div class="check-item"><span class="check-icon">✔</span> Mais facilidade para começar em casa</div>
+                    <div class="check-item"><span class="check-icon">✔</span> Evita complicação e retrabalho</div>
+                    <div class="check-item"><span class="check-icon">✔</span> Tudo organizado para facilitar seu começo
+                    </div>
+                    <div class="check-item"><span class="check-icon">✔</span> Pode recuperar o investimento com poucas
+                        vendas</div>
+                </div>
+            </div>
 
-            .reviews-track {
-                display: flex;
-                align-items: center;
-                transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-                width: max-content;
-            }
-
-            .rev-item {
-                width: 280px;
-                /* MAIORES (Grandes no celular) */
-                margin: 0 10px;
-                flex-shrink: 0;
-                border-radius: var(--radius-lg);
-                border: 2px solid rgba(255, 77, 139, .15);
-                overflow: hidden;
-                transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s;
-                opacity: 0.4;
-                transform: scale(0.85);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .rev-item.active {
-                opacity: 1;
-                transform: scale(1);
-                border-color: var(--pink);
-                box-shadow: 0 15px 40px rgba(255, 77, 139, .35);
-                z-index: 2;
-                position: relative;
-            }
-
-            .rev-item img {
-                width: 100%;
-                display: block;
-                object-fit: contain;
-            }
-        </style>
-
-        <div class="reviews-wrap">
-            <div class="reviews-track" id="reviewsTrack">
-                <div class="rev-item"><img src="assets/depoimento1.png" alt="Depoimento 1"></div>
-                <div class="rev-item"><img src="assets/depoimento2.png" alt="Depoimento 2"></div>
-                <div class="rev-item"><img src="assets/depoimento3.png" alt="Depoimento 3"></div>
-                <div class="rev-item"><img src="assets/depoimento4.png" alt="Depoimento 4"></div>
-                <div class="rev-item"><img src="assets/depoimento5.png" alt="Depoimento 5"></div>
+            <div class="align-center mt-40">
+                <h3 class="problem-text">Quantas vendas você deixa de fazer por não ter produtos prontos para vender?
+                </h3>
+                <p style="margin-bottom: 24px; color: #555;">Aproveite a oferta por tempo limitado</p>
+                <a href="#planos" class="btn">Quero acessar agora e começar hoje</a>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES -->
-    <section class="features">
-        <div class="features-grid">
-            <div class="feat"><span class="feat-icon">✨</span>
-                <div class="feat-title">Alta Resolução</div>
-                <div class="feat-desc">Chega de imagens borradas do Google. Imprima com qualidade profissional e
-                    entregue um produto premium.</div>
+    <!-- WHO IS THIS FOR -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Este material é ideal para você que deseja</h2>
             </div>
-            <div class="feat"><span class="feat-icon">🔥</span>
-                <div class="feat-title">Temas Virais</div>
-                <div class="feat-desc">O que está na moda vende mais rápido. Todos os 30 temas foram escolhidos pelo
-                    sucesso com crianças em 2026.</div>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Começar uma renda extra em casa</h3>
+                    <p>Sem precisar aprender algo complicado para começar.</p>
+                </div>
+                <div class="card">
+                    <h3>Criar produtos infantis bonitos</h3>
+                    <p>Mesmo sem saber design, usando modelos prontos e fáceis de personalizar.</p>
+                </div>
+                <div class="card">
+                    <h3>Trabalhar organizado</h3>
+                    <p>Com algo simples, sem perder horas tentando montar artes do zero.</p>
+                </div>
+                <div class="card">
+                    <h3>Vender rapidamente</h3>
+                    <p>Ter mais facilidade para fazer suas primeiras vendas com produtos prontos.</p>
+                </div>
+                <div class="card">
+                    <h3>Começar ainda hoje</h3>
+                    <p>Usando uma impressora comum, mesmo sem experiência ou equipamentos profissionais.</p>
+                </div>
             </div>
-            <div class="feat"><span class="feat-icon">✅</span>
-                <div class="feat-title">Pronto para Usar</div>
-                <div class="feat-desc">Baixe, imprima e monte em minutos. Zero conhecimento em design necessário.</div>
+        </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: var(--pink-cta); font-size: 18px; text-transform: uppercase; letter-spacing: 2px;">⚡
+                    ACESSO IMEDIATO</h2>
+                <h2 style="font-size: 36px; margin-top: 8px;">Tudo o que você vai receber</h2>
+                <p style="margin-top: 16px;">Tudo foi organizado para ser simples e fácil de aplicar. Você escolhe o
+                    produto e já pode começar na mesma hora.</p>
             </div>
-            <div class="feat"><span class="feat-icon">💰</span>
-                <div class="feat-title">Lucro na Primeira Venda</div>
-                <div class="feat-desc">Investimento de R$ 19,90 se paga integralmente na sua primeira venda. O restante
-                    é lucro puro.</div>
+
+            <div class="grid-cards" style="max-width: 800px; margin: 0 auto;">
+                <div class="card" style="border-top: 4px solid var(--pink-main);">
+                    <h3>🟢 Comece Sua Papelaria Infantil em 24h™</h3>
+                    <ul class="price-list" style="margin-top: 24px; margin-bottom: 0;">
+                        <li>30 livros interativos infantis</li>
+                        <li>Arquivos prontos para impressão</li>
+                        <li>Produtos organizados</li>
+                        <li>PDF em alta resolução</li>
+                        <li>Licença para venda física</li>
+                        <li>Acesso imediato</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top: 4px solid var(--lilac);">
+                    <h3>🟣 Método Encaderna & Lucra™ Premium</h3>
+                    <ul class="price-list" style="margin-top: 24px; margin-bottom: 0;">
+                        <li>30 livros interativos infantis</li>
+                        <li>+500 moldes cubecraft</li>
+                        <li>Tutorial simples de montagem</li>
+                        <li>+250 capas editáveis no Canva</li>
+                        <li>+1500 kits festa infantis</li>
+                        <li>Catálogo organizado para venda</li>
+                        <li>Produtos prontos para imprimir e vender</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- BONUSES -->
-    <section class="bonuses">
-        <div class="section-title">Bônus <span>Estratégicos</span></div>
-        <div class="section-sub">Incluídos sem custo extra</div>
-        <div class="bonuses-grid">
-            <div class="bonus">
-                <div class="bonus-num">1</div>
-                <img src="assets/bonus_1_1778090475357.png" alt="Guia A Embalagem"
-                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 12px; border: 1.5px solid var(--pink); flex-shrink: 0;">
-                <div>
-                    <div class="bonus-title">Guia "A Embalagem Perfeita"</div>
-                    <div class="bonus-desc">Como valorizar seu produto com laços, saquinhos e detalhes que justificam
-                        cobrar até 3x mais pelo livro montado.</div>
-                </div>
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>🔥 E NÃO PARA POR AÍ... <br> <span style="color: var(--pink-main);">🎁 6 BÔNUS EXCLUSIVOS</span>
+                </h2>
             </div>
-            <div class="bonus">
-                <div class="bonus-num">2</div>
-                <img src="assets/bonus_2_1778090956126.png" alt="PDF Mapa do Sucesso"
-                    style="width: 100px; height: 100px; object-fit: cover; border-radius: 12px; border: 1.5px solid var(--pink); flex-shrink: 0;">
-                <div>
-                    <div class="bonus-title">PDF "Mapa do Sucesso"</div>
-                    <div class="bonus-desc">Passo a passo para começar a vender no Instagram e no presencial, atraindo
-                        clientes que compram toda semana.</div>
+
+            <div class="bonus-grid">
+                <div class="bonus-card">
+                    <h4>Bônus #1</h4>
+                    <h3>Guia de Precificação Inteligente™</h3>
+                    <p>Aprenda quanto cobrar, aumentar o lucro e evitar vender barato.</p>
+                </div>
+                <div class="bonus-card">
+                    <h4>Bônus #2</h4>
+                    <h3>Guia Primeiras Vendas em Casa™</h3>
+                    <p>Formas simples de divulgar no WhatsApp e Instagram.</p>
+                </div>
+                <div class="bonus-card">
+                    <h4>Bônus #3</h4>
+                    <h3>A Lista dos Mais Vendidos™</h3>
+                    <p>Descubra os produtos infantis com a maior saída comprovada.</p>
+                </div>
+                <div class="bonus-card">
+                    <h4>Bônus #4</h4>
+                    <h3>Guia Produção Rápida em Casa™</h3>
+                    <p>Organize sua produção de forma mais simples e prática para não se perder.</p>
+                </div>
+                <div class="bonus-card">
+                    <h4>Bônus #5</h4>
+                    <h3>Frases Prontas Para Divulgação™</h3>
+                    <p>Mensagens persuasivas prontinhas para divulgar seus produtos para dezenas de mães.</p>
+                </div>
+                <div class="bonus-card">
+                    <h4>Bônus #6</h4>
+                    <h3>Checklist da Papelaria Pronta™</h3>
+                    <p>Passo a passo simples para começar hoje à sua produção sem travar.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TIMER -->
-    <div class="timer-section">
-        <div class="timer-label">⏰ Oferta especial encerra em — <span>depois o preço sobe para R$ 37,00</span></div>
-        <div class="timer-digits">
-            <div class="timer-block">
-                <div class="timer-num" id="t-h">00</div>
-                <div class="timer-unit">Horas</div>
+    <!-- PRICING -->
+    <section id="planos" class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <div
+                    style="display: inline-block; background: #FE3A36; color: #FFFFFF; font-size: 16px; font-weight: 500; padding: 8px 32px; border-radius: 50px; text-transform: uppercase; margin-bottom: 24px;">
+                    ⏰ ÚLTIMA CHANCE — OFERTA TERMINA HOJE
+                </div>
+                <h2
+                    style="font-size: 46px; color: #3A3A3A; text-transform: uppercase; font-family: 'Poppins', sans-serif; font-weight: 900; line-height: 1.1; margin-bottom: 16px;">
+                    ESCOLHA A OPÇÃO IDEAL PARA<br>VOCÊ
+                </h2>
+                <hr style="width: 150px; margin: 0 auto 24px; border: none; border-top: 2px solid #333;">
+                <p style="color: #666; font-size: 18px;">Um único pedido pode pagar o valor do acesso inteiro. Todo o
+                    resto vira lucro.</p>
             </div>
-            <div class="timer-sep">:</div>
-            <div class="timer-block">
-                <div class="timer-num" id="t-m">09</div>
-                <div class="timer-unit">Minutos</div>
-            </div>
-            <div class="timer-sep">:</div>
-            <div class="timer-block">
-                <div class="timer-num" id="t-s">08</div>
-                <div class="timer-unit">Segundos</div>
+
+            <div class="pricing-grid">
+                <!-- Plano Start -->
+                <div class="price-card">
+                    <h3 style="color: var(--pink-main); font-size: 24px;">PLANO START</h3>
+                    <p style="text-align: center; margin-bottom: 24px; color: #666;">Você recebe:</p>
+                    <ul class="price-list">
+                        <li>30 livros interativos infantis</li>
+                        <li>Arquivos prontos para impressão</li>
+                        <li>Produtos organizados</li>
+                        <li>Licença para venda física</li>
+                        <li>Acesso imediato</li>
+                    </ul>
+                    <div class="price-old">de R$ 97 por:</div>
+                    <div class="price-new">R$ 17,90</div>
+                    <div class="align-center">
+                        <a href="#" class="btn outline" style="width: 100%;">QUERO SOMENTE O BÁSICO</a>
+                    </div>
+                </div>
+
+                <!-- Plano Premium -->
+                <div class="price-card" style="border: 3px solid var(--yellow-light);">
+                    <div class="popular-badge" style="background: #73FF68; color: #000;">⚡ MAIS VENDIDO</div>
+
+                    <div style="text-align: center; margin-bottom: 16px;">
+                        <div
+                            style="display: inline-flex; align-items: center; background: #FE3A36; color: #FFFFFF; font-size: 12px; font-weight: 600; padding: 6px 16px; border-radius: 50px; text-transform: uppercase; white-space: nowrap;">
+                            ⏰ Última Chance — Oferta termina hoje
+                        </div>
+                    </div>
+
+                    <h3 style="color: var(--pink-cta); font-size: 28px;">PLANO COMPLETO</h3>
+
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div
+                            style="background: #F0FFF0; color: #00B341; border: 2px solid #00B341; font-size: 14px; font-weight: 600; padding: 10px 24px; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; width: 100%;">
+                            ⚡ 2x mais conteúdos
+                        </div>
+                    </div>
+
+                    <p style="text-align: center; margin-bottom: 24px; color: #666;">Tudo do Start + Arsenal Completo:
+                    </p>
+                    <ul class="price-list">
+                        <li>30 livros interativos infantis</li>
+                        <li>+500 moldes cubecraft</li>
+                        <li>+250 capas editáveis no Canva</li>
+                        <li>+1500 kits festa infantis</li>
+                        <li>Produtos prontos para imprimir e vender</li>
+                        <li style="color: var(--pink-cta); font-weight: 700;">🎁 + TODOS OS 6 BÔNUS EXCLUSIVOS</li>
+                    </ul>
+                    <div class="price-old">de R$ 197 por:</div>
+                    <div class="price-new">R$ 27,90</div>
+                    <div class="align-center">
+                        <a href="#" class="btn" style="width: 100%;">QUERO O PLANO COMPLETO</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- PRICE -->
-    <section class="price-section" id="preco">
-        <div class="price-box">
-            <div class="price-tag">🎁 Edição Sucessos — Oferta Especial</div>
-            <div class="price-name">Boutique Kids: Acervo Virais</div>
-            <div class="price-included">30 Livros Interativos + 2 Bônus Especiais</div>
-            <div class="price-was">De R$ 67,00</div>
-            <div class="price-now">R$ 19,90</div>
-            <div class="price-note">Acesso imediato após confirmação</div>
-            <button class="price-cta" onclick="window.location.href='https://pay.wiapy.com/Fuz8Fkzc7V'">→ Quero Meu
-                Acervo Agora</button>
-            <div class="price-guarantee">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                Compra segura · Entrega imediata
+    <!-- TESTIMONIALS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Veja o que algumas pessoas estão dizendo</h2>
+            </div>
+
+            <div class="image-placeholder">
+                (⬇️ Inserir Prints / Depoimentos Aqui)
+            </div>
+        </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="guarantee">
+                <div class="guarantee-icon">🛡️</div>
+                <h2>Garantia de 7 Dias</h2>
+                <p>Você pode acessar os materiais, testar tudo com calma e ver se realmente faz sentido para você.</p>
+                <p>E se achar que não era o que esperava… <strong>basta solicitar o reembolso dentro de 7 dias.</strong>
+                </p>
+                <p style="margin-top: 16px; font-weight: 600; color: var(--pink-cta);">Sem burocracia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Como é o acesso</h2>
+            </div>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(255, 111, 174, 0.1); color: var(--pink-main);">🛒
+                    </div>
+                    <h3>Conclua sua compra</h3>
+                    <p>Após o pagamento, o acesso é liberado automaticamente.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(255, 111, 174, 0.1); color: var(--pink-main);">🔑
+                    </div>
+                    <h3>Entre na área de membros</h3>
+                    <p>Todo o material fica organizado para facilitar seu uso.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(255, 111, 174, 0.1); color: var(--pink-main);">⬇️
+                    </div>
+                    <h3>Baixe os arquivos</h3>
+                    <p>Produtos prontos, materiais organizados e acesso imediato.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: rgba(255, 111, 174, 0.1); color: var(--pink-main);">✂️
+                    </div>
+                    <h3>Personalize e comece</h3>
+                    <p>Escolha o produto, personalize, imprima e venda.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FAQ -->
-    <section class="faq">
-        <div class="section-title" style="margin-bottom:24px">Perguntas <span>Frequentes</span></div>
-        <div class="faq-list">
+    <section class="section section-alt">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+
             <div class="faq-item">
-                <button class="faq-q" onclick="toggleFaq(this)">Como recebo os arquivos?<span
-                        class="faq-arrow">▾</span></button>
-                <div class="faq-a">O envio é imediato após confirmação do pagamento. Você receberá um e-mail com acesso
-                    a todos os arquivos em alta resolução.</div>
+                <h4>Preciso saber design para usar?</h4>
+                <p>Não. Os produtos já vêm prontos para facilitar seu começo.</p>
             </div>
             <div class="faq-item">
-                <button class="faq-q" onclick="toggleFaq(this)">Os temas são do momento?<span
-                        class="faq-arrow">▾</span></button>
-                <div class="faq-a">Sim! Selecionamos os 30 designs mais procurados pelas crianças em 2026 para garantir
-                    vendas rápidas. Bluey, K-pop e muito mais.</div>
+                <h4>Preciso criar artes do zero?</h4>
+                <p>Não. Você apenas personaliza os modelos.</p>
             </div>
             <div class="faq-item">
-                <button class="faq-q" onclick="toggleFaq(this)">Posso vender o livro físico montado?<span
-                        class="faq-arrow">▾</span></button>
-                <div class="faq-a">Com certeza! A licença comercial está inclusa. Você imprime, monta e o lucro da venda
-                    física é 100% seu.</div>
+                <h4>Posso vender os produtos?</h4>
+                <p>Sim. Você recebe licença para venda física.</p>
             </div>
             <div class="faq-item">
-                <button class="faq-q" onclick="toggleFaq(this)">Preciso saber design ou ter equipamento?<span
-                        class="faq-arrow">▾</span></button>
-                <div class="faq-a">Não precisa de nada disso. Os arquivos chegam prontos para imprimir em qualquer
-                    gráfica ou impressora doméstica. É só montar e vender.</div>
+                <h4>O acesso é imediato?</h4>
+                <p>Sim. O acesso é liberado logo após a compra.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Funciona para iniciantes?</h4>
+                <p>Sim. O material foi pensado justamente para quem está começando.</p>
+            </div>
+            <div class="faq-item">
+                <h4>Posso usar impressora comum?</h4>
+                <p>Sim. Você consegue começar em casa usando impressora simples.</p>
             </div>
         </div>
     </section>
 
-    <script>
-        function toggleFaq(btn) {
-            const item = btn.closest('.faq-item');
-            const isOpen = item.classList.contains('open');
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-            if (!isOpen) item.classList.add('open');
-        }
-        (function () {
-            let total = 9 * 60 + 8;
-            function tick() {
-                if (total < 0) total = 0;
-                const m = Math.floor(total / 60);
-                const s = total % 60;
-                document.getElementById('t-h').textContent = '00';
-                document.getElementById('t-m').textContent = String(m).padStart(2, '0');
-                document.getElementById('t-s').textContent = String(s).padStart(2, '0');
-                if (total > 0) { total--; setTimeout(tick, 1000) }
-            }
-            tick();
-        })();
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>Copyright © 2026 | Todos os direitos reservados.</p>
+            <p>Todos os direitos sobre a obra “Comece Sua Papelaria Infantil em 24h™” são reservados ao Método Encaderna
+                & Lucra™, nos termos da Lei nº 9.610/98 (Lei de Direitos Autorais).</p>
+            <p>A reprodução não autorizada desta publicação, no todo ou em parte, por quaisquer meios, constitui
+                violação dos direitos autorais (Art. 184 do Código Penal e Lei 9.610/98), sujeitando os infratores às
+                sanções civis e criminais previstas na legislação aplicável.</p>
+        </div>
+    </footer>
 
-        (function () {
-            const track = document.getElementById('espTrack');
-            const items = track.querySelectorAll('.esp-item');
-            const wrap = document.querySelector('.esp-track-wrap');
-            let currentIndex = 0;
-
-            function goToSlide(index) {
-                items.forEach(el => el.classList.remove('active'));
-                items[index].classList.add('active');
-
-                const itemWidth = 220;
-                const margin = 16;
-                const totalItemWidth = itemWidth + margin;
-
-                const wrapCenter = wrap.offsetWidth / 2;
-                const itemOffset = (index * totalItemWidth) + (totalItemWidth / 2);
-
-                const shift = wrapCenter - itemOffset;
-
-                track.style.transform = `translateX(${shift}px)`;
-            }
-
-            goToSlide(0);
-
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % items.length;
-                goToSlide(currentIndex);
-            }, 3000);
-
-            window.addEventListener('resize', () => goToSlide(currentIndex));
-        })();
-
-        // REVIEWS SLIDER LOGIC
-        (function () {
-            const track = document.getElementById('reviewsTrack');
-            const items = track.querySelectorAll('.rev-item');
-            const wrap = document.querySelector('.reviews-wrap');
-            let currentIndex = 0;
-
-            function goToSlide(index) {
-                items.forEach(el => el.classList.remove('active'));
-                items[index].classList.add('active');
-
-                const itemWidth = 280;
-                const margin = 20; // 10px each side
-                const totalWidth = itemWidth + margin;
-                const wrapCenter = wrap.offsetWidth / 2;
-                const itemOffset = (index * totalWidth) + (totalWidth / 2);
-                const shift = wrapCenter - itemOffset;
-
-                track.style.transform = `translateX(${shift}px)`;
-            }
-
-            goToSlide(0);
-
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % items.length;
-                goToSlide(currentIndex);
-            }, 3500); // 3.5s pra dar tempo de ler os depoimentos
-
-            window.addEventListener('resize', () => goToSlide(currentIndex));
-        })();
-    </script>
 </body>
 
 </html>
