@@ -175,7 +175,8 @@
         }
 
         .check-icon {
-            color: var(--pink-main);
+            color: #22C55E;
+            /* Verde vibrante */
             font-size: 20px;
             font-weight: bold;
             flex-shrink: 0;
@@ -373,12 +374,14 @@
 
         .price-list li::before {
             content: '✔';
-            color: var(--pink-main);
+            color: #22C55E;
+            /* Verde vibrante */
             font-weight: bold;
         }
 
         .price-old {
-            color: #888;
+            color: #FF3B30;
+            /* Vermelho para o preço antigo */
             font-size: 16px;
             text-decoration: line-through;
             text-align: center;
@@ -388,7 +391,8 @@
             font-size: 48px;
             font-family: 'Poppins', sans-serif;
             font-weight: 800;
-            color: var(--pink-cta);
+            color: #22C55E;
+            /* Verde para a nova oferta */
             line-height: 1;
             margin: 8px 0 24px;
             text-align: center;
@@ -536,6 +540,56 @@
 
         .carousel-dot.active {
             background: var(--pink-main);
+        }
+
+        /* Premium Bonus List */
+        .premium-bonus-box {
+            background: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px 15px;
+            margin: 20px 0;
+            border: 2.5px solid var(--yellow-light);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .premium-bonus-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            color: var(--black-soft);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: left;
+            line-height: 1.3;
+        }
+
+        .premium-bonus-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .premium-bonus-item .check {
+            color: #22C55E;
+            /* Verde vibrante */
+            font-weight: bold;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .premium-bonus-item .gift {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .premium-bonus-title {
+            color: var(--pink-cta);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+            letter-spacing: 1px;
         }
 
         /* Testimonials Grid */
@@ -810,7 +864,7 @@
             <div class="pricing-grid">
                 <!-- Plano Start -->
                 <div class="price-card">
-                    <h3 style="color: var(--pink-main); font-size: 24px;">PLANO START</h3>
+                    <h3 style="color: var(--pink-main); font-size: 24px;">PLANO BÁSICO</h3>
                     <img src="assets/plano-basico.webp" alt="Plano Básico"
                         style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
                     <p style="text-align: center; margin-bottom: 24px; color: #666;">Você recebe:</p>
@@ -824,7 +878,8 @@
                     <div class="price-old">de R$ 97 por:</div>
                     <div class="price-new">R$ 17,90</div>
                     <div class="align-center">
-                        <a href="#" class="btn outline" style="width: 100%;">QUERO SOMENTE O BÁSICO</a>
+                        <a href="https://pay.wiapy.com/Fuz8Fkzc7V" class="btn outline" style="width: 100%;">QUERO
+                            SOMENTE O BÁSICO</a>
                     </div>
                 </div>
 
@@ -839,7 +894,7 @@
                         </div>
                     </div>
 
-                    <h3 style="color: var(--pink-cta); font-size: 28px;">PLANO COMPLETO</h3>
+                    <h3 style="color: var(--pink-cta); font-size: 28px;">PLANO PREMIUM</h3>
                     <img src="assets/plano-premium.webp" alt="Plano Premium"
                         style="width: 100%; border-radius: 12px; margin-bottom: 20px;">
                     <div style="text-align: center; margin-bottom: 20px;">
@@ -849,7 +904,7 @@
                         </div>
                     </div>
 
-                    <p style="text-align: center; margin-bottom: 24px; color: #666;">Tudo do Start + Arsenal Completo:
+                    <p style="text-align: center; margin-bottom: 24px; color: #666;">Tudo do Básico + Arsenal Completo:
                     </p>
                     <ul class="price-list">
                         <li>30 livros interativos infantis</li>
@@ -857,12 +912,52 @@
                         <li>+250 capas editáveis no Canva</li>
                         <li>+1500 kits festa infantis</li>
                         <li>Produtos prontos para imprimir e vender</li>
-                        <li style="color: var(--pink-cta); font-weight: 700;">🎁 + TODOS OS 6 BÔNUS EXCLUSIVOS</li>
                     </ul>
+
+                    <div class="premium-bonus-box">
+                        <span class="premium-bonus-title">🎁 6 Bônus Exclusivos Inclusos:</span>
+
+                        <div class="premium-bonus-item">
+                            <span class="check">✔</span>
+                            <span class="gift">🎁</span>
+                            <span>Bônus #1: Guia de Precificação Inteligente™</span>
+                        </div>
+
+                        <div class="premium-bonus-item">
+                            <span class="check">✔</span>
+                            <span class="gift">🎁</span>
+                            <span>Bônus #2: Guia Primeiras Vendas em Casa™</span>
+                        </div>
+
+                        <div class="premium-bonus-item">
+                            <span class="check">✔</span>
+                            <span class="gift">🎁</span>
+                            <span>Bônus #3: A Lista dos Mais Vendidos™</span>
+                        </div>
+
+                        <div class="premium-bonus-item">
+                            <span class="check">✔</span>
+                            <span class="gift">🎁</span>
+                            <span>Bônus #4: Guia Produção Rápida em Casa™</span>
+                        </div>
+
+                        <div class="premium-bonus-item">
+                            <span class="check">✔</span>
+                            <span class="gift">🎁</span>
+                            <span>Bônus #5: Frases Prontas Para Divulgação™</span>
+                        </div>
+
+                        <div class="premium-bonus-item">
+                            <span class="check">✔</span>
+                            <span class="gift">🎁</span>
+                            <span>Bônus #6: Checklist da Papelaria Pronta™</span>
+                        </div>
+                    </div>
                     <div class="price-old">de R$ 197 por:</div>
                     <div class="price-new">R$ 27,90</div>
                     <div class="align-center">
-                        <a href="#" class="btn" style="width: 100%;">QUERO O PLANO COMPLETO</a>
+                        <a href="https://pay.wiapy.com/R5pHATrKbj" class="btn" style="width: 100%;">QUERO O PLANO
+                            PREMIUM</a>
                     </div>
                 </div>
             </div>
@@ -881,6 +976,11 @@
                 <img src="assets/depoimento2.png" alt="Depoimento 2">
                 <img src="assets/depoimento3.png" alt="Depoimento 3">
                 <img src="assets/depoimento4.png" alt="Depoimento 4">
+                <img src="assets/depoimentos%20wpp%20(1).png" alt="Depoimento WhatsApp 1">
+                <img src="assets/depoimentos%20wpp%20(2).png" alt="Depoimento WhatsApp 2">
+                <img src="assets/depoimentos%20wpp%20(3).png" alt="Depoimento WhatsApp 3">
+                <img src="assets/depoimentos%20wpp%20(4).png" alt="Depoimento WhatsApp 4">
+                <img src="assets/depoimentos%20wpp%20(5).png" alt="Depoimento WhatsApp 5">
             </div>
         </div>
     </section>
